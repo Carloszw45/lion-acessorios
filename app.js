@@ -4,14 +4,14 @@
     // PERSONALIZE: insira aqui o WhatsApp da loja (somente números com DDI e DDD, ex. 5531999999999).
     // Se ficar vazio, o botão abre o compartilhamento no WhatsApp, sem contato de destino definido.
     const CONFIG = { whatsappNumber: '' };
-    const uniquePhotos = ["assets/produto-01.webp", "assets/produto-02.webp", "assets/produto-03.webp", "assets/produto-04.webp", "assets/produto-05.webp", "assets/produto-06.webp", "assets/produto-07.webp", "assets/produto-08.webp", "assets/produto-09.webp", "assets/produto-10.webp", "assets/produto-11.webp", "assets/produto-12.webp"];
+    const uniquePhotos = ["assets/produto-01-hd.webp", "assets/produto-02-hd.webp", "assets/produto-03-hd.webp", "assets/produto-04-hd.webp", "assets/produto-05-hd.webp", "assets/produto-06-hd.webp", "assets/produto-07-hd.webp", "assets/produto-08-hd.webp", "assets/produto-09-hd.webp", "assets/produto-10-hd.webp", "assets/produto-11-hd.webp", "assets/produto-12-hd.webp"];
     const products = [
   {
     "id": 1,
     "name": "Capinha Silicone Preta",
     "category": "capinhas",
     "label": "Silicone",
-    "image": "assets/produto-02.webp",
+    "image": "assets/produto-02-hd.webp",
     "bg": "#e8ebe4"
   },
   {
@@ -19,7 +19,7 @@
     "name": "Capinha Transparente",
     "category": "capinhas",
     "label": "Clássica",
-    "image": "assets/produto-01.webp",
+    "image": "assets/produto-01-hd.webp",
     "bg": "#eef1eb"
   },
   {
@@ -27,7 +27,7 @@
     "name": "Carregador USB-C Preto",
     "category": "carregadores",
     "label": "Tomada",
-    "image": "assets/produto-04.webp",
+    "image": "assets/produto-04-hd.webp",
     "bg": "#e5edf1"
   },
   {
@@ -35,7 +35,7 @@
     "name": "Película de Vidro",
     "category": "peliculas",
     "label": "Proteção",
-    "image": "assets/produto-09.webp",
+    "image": "assets/produto-09-hd.webp",
     "bg": "#e9edf3"
   },
   {
@@ -43,7 +43,7 @@
     "name": "Capinha Silicone Rosa",
     "category": "capinhas",
     "label": "Cores",
-    "image": "assets/produto-03.webp",
+    "image": "assets/produto-03-hd.webp",
     "bg": "#f0eaf6"
   },
   {
@@ -51,7 +51,7 @@
     "name": "Carregador de Tomada Branco",
     "category": "carregadores",
     "label": "Tomada",
-    "image": "assets/produto-05.webp",
+    "image": "assets/produto-05-hd.webp",
     "bg": "#f0ede5"
   },
   {
@@ -59,7 +59,7 @@
     "name": "Película de Privacidade",
     "category": "peliculas",
     "label": "Privacidade",
-    "image": "assets/produto-10.webp",
+    "image": "assets/produto-10-hd.webp",
     "bg": "#e5eced"
   },
   {
@@ -67,7 +67,7 @@
     "name": "Carregador Veicular",
     "category": "carregadores",
     "label": "No carro",
-    "image": "assets/produto-06.webp",
+    "image": "assets/produto-06-hd.webp",
     "bg": "#e8ecec"
   },
   {
@@ -75,7 +75,7 @@
     "name": "Cabo Multiconector",
     "category": "carregadores",
     "label": "Cabo",
-    "image": "assets/produto-07.webp",
+    "image": "assets/produto-07-hd.webp",
     "bg": "#e6efdf"
   },
   {
@@ -83,7 +83,7 @@
     "name": "Cabo USB-C Trançado",
     "category": "carregadores",
     "label": "Cabo",
-    "image": "assets/produto-08.webp",
+    "image": "assets/produto-08-hd.webp",
     "bg": "#e6ede0"
   },
   {
@@ -91,7 +91,7 @@
     "name": "Fone Bluetooth",
     "category": "acessorios",
     "label": "Sem fio",
-    "image": "assets/produto-11.webp",
+    "image": "assets/produto-11-hd.webp",
     "bg": "#edf0eb"
   },
   {
@@ -99,7 +99,7 @@
     "name": "Suporte para Celular",
     "category": "acessorios",
     "label": "Suporte",
-    "image": "assets/produto-12.webp",
+    "image": "assets/produto-12-hd.webp",
     "bg": "#eee8e3"
   }
 ];
@@ -111,8 +111,8 @@
     const safeCart=()=>{try{const v=JSON.parse(localStorage.getItem('lion-cart-v1')||'[]');return Array.isArray(v)?v.filter(x=>Number.isInteger(x.id)&&itemById(x.id)&&Number.isInteger(x.qty)&&x.qty>0&&x.qty<100&&typeof x.model==='string').slice(0,75):[]}catch{return []}};
     let cart=safeCart(),filter='todos',search='',pending=null,toastTimer=null;
     const persist=()=>{try{localStorage.setItem('lion-cart-v1',JSON.stringify(cart))}catch{}};
-    byId('cat-case').innerHTML=`<img src="${uniquePhotos[0]}" alt="Capinha">`;byId('cat-charger').innerHTML=`<img src="${uniquePhotos[3]}" alt="Carregador">`;byId('cat-glass').innerHTML=`<img src="${uniquePhotos[8]}" alt="Película">`;
-    function renderProducts(){const q=search.toLocaleLowerCase('pt-BR');const list=products.filter(p=>(filter==='todos'||p.category===filter)&&(!q||(p.name+' '+p.category+' '+p.label).toLocaleLowerCase('pt-BR').includes(q)));byId('count-label').textContent=list.length+' '+(list.length===1?'produto':'produtos');byId('product-grid').innerHTML=list.length?list.map(p=>`<article class="product-card"><div class="product-art" style="--artbg:${p.bg}"><span class="product-tag">${p.label}</span><img class="product-image" src="${p.image}" alt="${esc(p.name)}" loading="lazy" decoding="async" width="190" height="139"></div><div class="product-info"><span class="product-category">${p.category==='peliculas'?'Películas':p.category==='capinhas'?'Capinhas':p.category==='carregadores'?'Carregadores':'Acessórios'}</span><h3>${esc(p.name)}</h3><div class="product-bottom"><div class="product-price">Sob consulta<small>Consultar disponibilidade</small></div><button class="add-btn" data-add="${p.id}" aria-label="Adicionar ${esc(p.name)} ao carrinho">${icons.plus}</button></div></div></article>`).join(''):`<div class="empty-state"><svg width="42" height="42" style="margin:auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><b>Nenhum produto encontrado</b>Tente outra busca ou escolha outra categoria.</div>`}
+    byId('cat-case').innerHTML=`<img src="${uniquePhotos[0].replace('-hd.webp','-small.webp')}" alt="Capinha">`;byId('cat-charger').innerHTML=`<img src="${uniquePhotos[3].replace('-hd.webp','-small.webp')}" alt="Carregador">`;byId('cat-glass').innerHTML=`<img src="${uniquePhotos[8].replace('-hd.webp','-small.webp')}" alt="Película">`;
+    function renderProducts(){const q=search.toLocaleLowerCase('pt-BR');const list=products.filter(p=>(filter==='todos'||p.category===filter)&&(!q||(p.name+' '+p.category+' '+p.label).toLocaleLowerCase('pt-BR').includes(q)));byId('count-label').textContent=list.length+' '+(list.length===1?'produto':'produtos');byId('product-grid').innerHTML=list.length?list.map(p=>`<article class="product-card"><div class="product-art"><span class="product-tag">${p.label}</span><img class="product-image" src="${p.image}" srcset="${p.image.replace('-hd.webp','-small.webp')} 480w, ${p.image} 960w" sizes="(max-width: 680px) calc((100vw - 42px) / 2), (max-width: 920px) calc((100vw - 70px) / 3), 278px" alt="${esc(p.name)}" loading="lazy" decoding="async" width="960" height="960"></div><div class="product-info"><span class="product-category">${p.category==='peliculas'?'Películas':p.category==='capinhas'?'Capinhas':p.category==='carregadores'?'Carregadores':'Acessórios'}</span><h3>${esc(p.name)}</h3><div class="product-bottom"><div class="product-price">Sob consulta<small>Consultar disponibilidade</small></div><button class="add-btn" data-add="${p.id}" aria-label="Adicionar ${esc(p.name)} ao carrinho">${icons.plus}</button></div></div></article>`).join(''):`<div class="empty-state"><svg width="42" height="42" style="margin:auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><b>Nenhum produto encontrado</b>Tente outra busca ou escolha outra categoria.</div>`}
     function setFilter(f){filter=f;document.querySelectorAll('.filter').forEach(b=>{const active=b.dataset.filter===f;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});renderProducts()}
     document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));
     document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{search='';byId('search-input').value='';setFilter(b.dataset.category);byId('produtos').scrollIntoView({behavior:'smooth'})}));
@@ -123,7 +123,7 @@
     function updateCounts(){const n=sum();byId('header-count').textContent=n;byId('nav-count').textContent=n;byId('drawer-sub').textContent=n===1?'1 item na sua lista':n+' itens na sua lista'}
     function toast(message){clearTimeout(toastTimer);const el=byId('toast');el.textContent=message;el.classList.add('show');toastTimer=setTimeout(()=>el.classList.remove('show'),2200)}
     function addToCart(id,model=''){const p=itemById(id);if(!p)return;if(['capinhas','peliculas'].includes(p.category)&&!model){pending=id;byId('modal-title').textContent=p.name;byId('model-input').value='';byId('model-input').classList.remove('invalid');byId('model-error').classList.remove('show');openModal();return}const key=uid(id,model);const existing=cart.find(x=>uid(x.id,x.model)===key);if(existing)existing.qty=Math.min(existing.qty+1,99);else cart.push({id,model,qty:1});persist();updateCounts();renderCart();toast('Adicionado à sua lista!')}
-    function renderCart(){const holder=byId('cart-items');if(!cart.length){holder.innerHTML=`<div class="cart-empty"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#9aab93" stroke-width="1.1"><path d="M4 7h16l-1.5 13h-13L4 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><h3>Seu carrinho está vazio</h3><p>Escolha os acessórios que você gostou para montar sua lista.</p></div>`;byId('cart-footer').style.display='none';return}byId('cart-footer').style.display='block';holder.innerHTML=cart.map((item,i)=>{const p=itemById(item.id);return `<div class="cart-item"><div class="cart-thumb" style="background:${p.bg}"><img src="${p.image}" alt="${esc(p.name)}"></div><div class="cart-item-info"><b>${esc(p.name)}</b><small>${item.model?'Modelo: '+esc(item.model):'Modelo a confirmar'}</small><div class="qty-row"><button data-qty="-1" data-index="${i}" aria-label="Diminuir quantidade">−</button><span>${item.qty}</span><button data-qty="1" data-index="${i}" aria-label="Aumentar quantidade">+</button><button class="remove-btn" data-remove="${i}">Remover</button></div></div></div>`}).join('')}
+    function renderCart(){const holder=byId('cart-items');if(!cart.length){holder.innerHTML=`<div class="cart-empty"><svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#9aab93" stroke-width="1.1"><path d="M4 7h16l-1.5 13h-13L4 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><h3>Seu carrinho está vazio</h3><p>Escolha os acessórios que você gostou para montar sua lista.</p></div>`;byId('cart-footer').style.display='none';return}byId('cart-footer').style.display='block';holder.innerHTML=cart.map((item,i)=>{const p=itemById(item.id);return `<div class="cart-item"><div class="cart-thumb"><img src="${p.image.replace('-hd.webp','-small.webp')}" alt="${esc(p.name)}"></div><div class="cart-item-info"><b>${esc(p.name)}</b><small>${item.model?'Modelo: '+esc(item.model):'Modelo a confirmar'}</small><div class="qty-row"><button data-qty="-1" data-index="${i}" aria-label="Diminuir quantidade">−</button><span>${item.qty}</span><button data-qty="1" data-index="${i}" aria-label="Aumentar quantidade">+</button><button class="remove-btn" data-remove="${i}">Remover</button></div></div></div>`}).join('')}
     byId('cart-items').addEventListener('click',e=>{const q=e.target.closest('[data-qty]');const r=e.target.closest('[data-remove]');if(q){const i=Number(q.dataset.index);if(cart[i]){cart[i].qty+=Number(q.dataset.qty);if(cart[i].qty<=0)cart.splice(i,1)}}else if(r){cart.splice(Number(r.dataset.remove),1)}else return;persist();updateCounts();renderCart()});
     const overlay=byId('overlay'),drawer=byId('cart-drawer'),modal=byId('model-modal');
     function closeAll(){overlay.classList.remove('open');drawer.classList.remove('open');modal.classList.remove('open');drawer.setAttribute('aria-hidden','true');modal.setAttribute('aria-hidden','true');document.body.classList.remove('no-scroll')}

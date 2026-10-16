@@ -38,3 +38,10 @@
       .hero-badge{right:24px;bottom:24px;font-size:8px;padding:7px 10px}
     }
     @media(max-width:380px){.hero h1{font-size:37px}.hero-copy{padding:28px 22px 8px}.brand-copy small{letter-spacing:.19em}}
+
+/* Product cutouts: true transparency, crisp responsive images, no photo panels. */
+.product-art{background:transparent}
+.product-art::before{display:none}
+.product-image{width:94%;height:94%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(24,36,24,.07))}
+.product-tag{background:#eff5e8}
+.cart-thumb{background:transparent}

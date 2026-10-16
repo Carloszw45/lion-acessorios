@@ -12,4 +12,4 @@ Configure `CONFIG.whatsappNumber` em `app.js` com DDI e DDD, somente números. E
 
 ## Imagens
 
-Logo fornecida pelo usuário, com fundo removido. Banner com aparência fotográfica gerado para esta atualização. Fotos individuais de produtos preservadas do arquivo original e associadas a cards distintos. Todos os valores permanecem sob consulta.
+Logo fornecida pelo usuário, com fundo removido. Banner com aparência fotográfica gerado para esta atualização. Doze imagens individuais de produtos com aparência fotográfica, geradas por IA e com canal alfa transparente. Versões de 960 px e 480 px para telas de diferentes tamanhos, sem repetição entre produtos. Prompts registrados em `docs/asset-prompts.md`. Todos os valores permanecem sob consulta.
