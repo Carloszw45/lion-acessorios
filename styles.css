@@ -42,6 +42,6 @@
 /* Product cutouts: true transparency, crisp responsive images, no photo panels. */
 .product-art{background:transparent}
 .product-art::before{display:none}
-.product-image{width:94%;height:94%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(24,36,24,.07))}
+.product-image{position:absolute;inset:0;margin:auto;width:92%;height:92%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(24,36,24,.07))}
 .product-tag{background:#eff5e8}
 .cart-thumb{background:transparent}
